@@ -28,7 +28,7 @@ def percentile_threshold(resized_img, f):
     thresh5 = np.percentile(abs(f), 95)
     f5 = (abs(f) >= thresh5) * f
     if5 = I_FFT_2D(f5)
-    
+
     plot_images(resized_img, if1, if2, if3, if4, if5)
     save_matrix(f, f1, f2, f3, f4, f5)
     print_num_nonzero(f, f1, f2, f3, f4, f5)
@@ -37,7 +37,7 @@ def use_high_low_freq(resized_img, f):
     # 19% compression
     f1 = keep_high_low(f, 19)
     if1 = I_FFT_2D(f1)
-   
+
     # 38% compression
     f2 = keep_high_low(f, 38)
     if2 = I_FFT_2D(f2)
@@ -53,7 +53,7 @@ def use_high_low_freq(resized_img, f):
     # 95% compression
     f5 = keep_high_low(f, 95)
     if5 = I_FFT_2D(f5)
-    
+
     plot_images(resized_img, if1, if2, if3, if4, if5)
     save_matrix(f, f1, f2, f3, f4, f5)
     print_num_nonzero(f, f1, f2, f3, f4, f5)

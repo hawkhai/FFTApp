@@ -70,7 +70,7 @@ def main(argv):
 
             # get the Fast Fourier Transform
             f = FFT_2D(resized_img)
-            
+
             # denoise the image based on a fraction. Any frequency wi
             fraction = 0.1
             x, y = f.shape
@@ -80,7 +80,7 @@ def main(argv):
             f[:, nonzero_cols:y-nonzero_cols] = 0
             total_nonzero = nonzero_rows*nonzero_cols*4
             print ('Total number of nonzeros is: ', total_nonzero, ', and the fraction is: ', round((fraction*2)*(fraction*2),3))
-            
+
             # get the inverse Fast Fourier Transform
             denoised_img = I_FFT_2D(f)
             print(np.allclose(I_FFT_2D(f), np.fft.ifft2(f)))
