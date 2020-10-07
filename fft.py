@@ -5,8 +5,8 @@ import cv2
 from matplotlib.colors import LogNorm
 from matplotlib import pyplot as plt
 from fft_method import DFT, I_DFT, FFT_2D, I_FFT, DFT_2D, FFT, I_DFT_2D, I_FFT_2D
-from compress import percentile_threshold, use_high_low_freq
-from runtime_exp import get_runtime_plot
+from fft_compress import percentile_threshold, use_high_low_freq
+from fft_runtime_exp import get_runtime_plot
 def nextPower2(n):
     res = 1
     if (n and not(n & (n - 1))):
@@ -39,10 +39,10 @@ def main(argv):
             # resize the image so that the size is power of 2
             dim = (width, height)
             resized_img = cv2.resize(img, dim)
-            # print(np.allclose(FFT_2D(resized_img), np.fft.fft2(resized_img)))
 
             # get the Fast Fourier Transform
             f = FFT_2D(resized_img)
+            print(np.allclose(f, np.fft.fft2(resized_img)))
 
             # plot the 1 by 2 subplot of the original image and the FFT
             plt.subplot(121)
@@ -83,7 +83,7 @@ def main(argv):
 
             # get the inverse Fast Fourier Transform
             denoised_img = I_FFT_2D(f)
-            print(np.allclose(I_FFT_2D(f), np.fft.ifft2(f)))
+            print(np.allclose(denoised_img, np.fft.ifft2(f)))
 
             # plot the 1 by 2 subplot of the original image and the denoised image
             plt.subplot(121)
